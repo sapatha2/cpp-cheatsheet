@@ -2,7 +2,7 @@
 #include "dataframe.h"
 #include <algorithm>
 #include <assert.h>
-
+#include <iostream>
 void StaticDataFrame::add_column(std::string colname, std::vector<double> & data){
     assert (data.size() == col_size);
     std::pair<std::string,std::vector<double> > new_column (colname, data);
@@ -27,4 +27,13 @@ void StaticDataFrame::add_column(std::string colname, std::vector<std::string> &
 
     std::pair<std::string, std::unordered_map<std::string, std::vector<int> > > new_column (colname, hash_map);
     filter_columns.insert(new_column);
+}
+
+std::vector<double> * StaticDataFrame::operator[](std::string colname){
+    auto it = numeric_columns.find(colname);
+    if(it == numeric_columns.end()){
+      return NULL;
+    }else{
+      return &(it -> second);
+    }
 }

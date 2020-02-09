@@ -12,7 +12,7 @@ class StaticDataFrame {
     void add_column(std::string colname, std::vector<double> & data); //Add column of numeric data
     void add_column(std::string colname, std::vector<std::string> & data); //Add column of filter data
 
-    std::vector<double> operator [](std::string colname); //Return vector to numeric pointer
+    std::vector<double> * operator [](std::string colname); //Return vector of numeric column
     StaticDataFrame iloc(int start, int end); //Pull data from rows [start, end)
     StaticDataFrame filter(std::string colname, std::string value); //Pull rows which have value value in column colname
   private:
